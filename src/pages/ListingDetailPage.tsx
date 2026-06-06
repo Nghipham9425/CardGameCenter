@@ -1,13 +1,15 @@
-import { Heart, MessageCircle, ShieldCheck } from 'lucide-react'
+import { Handshake, Heart, MessageCircle, ShieldCheck } from 'lucide-react'
 import { Badge } from '../components/Badge'
 import type { Listing } from '../types'
 
 export function ListingDetailPage({
   listing,
   onChat,
+  onMakeOffer,
 }: {
   listing: Listing
   onChat: (listing: Listing) => void
+  onMakeOffer: (listing: Listing) => void
 }) {
   return (
     <section className="mx-auto grid max-w-6xl gap-6 px-4 py-6 sm:px-6 lg:grid-cols-[420px_minmax(0,1fr)]">
@@ -54,6 +56,14 @@ export function ListingDetailPage({
             >
               <MessageCircle size={18} />
               Chat seller
+            </button>
+            <button
+              className="inline-flex h-11 items-center gap-2 rounded-md bg-[#ffcb05] px-4 text-sm font-bold text-slate-950"
+              type="button"
+              onClick={() => onMakeOffer(listing)}
+            >
+              <Handshake size={18} />
+              Make offer
             </button>
             <button className="inline-flex h-11 items-center gap-2 rounded-md border border-slate-200 bg-white px-4 text-sm font-semibold" type="button">
               <Heart size={18} />

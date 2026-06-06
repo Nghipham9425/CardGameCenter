@@ -1,4 +1,4 @@
-import { Bell, LogIn, LogOut, PackagePlus, Search, Store, User, Zap } from 'lucide-react'
+import { Bell, Heart, LogIn, LogOut, PackagePlus, ReceiptText, Search, Store, User, Zap } from 'lucide-react'
 import { useState } from 'react'
 import { NavLink, useNavigate } from 'react-router'
 import { avatars } from '../data/avatars'
@@ -24,6 +24,11 @@ export function Header({
     setMenuOpen(false)
     onLogout()
     navigate('/market')
+  }
+
+  function goToUserPage(path: string) {
+    setMenuOpen(false)
+    navigate(path)
   }
 
   return (
@@ -83,13 +88,37 @@ export function Header({
             </button>
             {menuOpen && (
               <div className="absolute right-0 mt-2 w-56 overflow-hidden rounded-lg border border-slate-200 bg-white shadow-xl">
-                <button className="flex w-full items-center gap-3 px-4 py-3 text-left text-sm font-semibold text-slate-700 hover:bg-slate-50" type="button">
+                <button
+                  className="flex w-full items-center gap-3 px-4 py-3 text-left text-sm font-semibold text-slate-700 hover:bg-slate-50"
+                  type="button"
+                  onClick={() => goToUserPage('/profile')}
+                >
                   <User size={17} />
                   Profile
                 </button>
-                <button className="flex w-full items-center gap-3 px-4 py-3 text-left text-sm font-semibold text-slate-700 hover:bg-slate-50" type="button">
+                <button
+                  className="flex w-full items-center gap-3 px-4 py-3 text-left text-sm font-semibold text-slate-700 hover:bg-slate-50"
+                  type="button"
+                  onClick={() => goToUserPage('/my-listings')}
+                >
                   <Zap size={17} />
-                  My deals
+                  My listings
+                </button>
+                <button
+                  className="flex w-full items-center gap-3 px-4 py-3 text-left text-sm font-semibold text-slate-700 hover:bg-slate-50"
+                  type="button"
+                  onClick={() => goToUserPage('/orders')}
+                >
+                  <ReceiptText size={17} />
+                  Orders / trades
+                </button>
+                <button
+                  className="flex w-full items-center gap-3 px-4 py-3 text-left text-sm font-semibold text-slate-700 hover:bg-slate-50"
+                  type="button"
+                  onClick={() => goToUserPage('/saved')}
+                >
+                  <Heart size={17} />
+                  Saved
                 </button>
                 <button
                   className="flex w-full items-center gap-3 px-4 py-3 text-left text-sm font-semibold text-[#ef5350] hover:bg-red-50"

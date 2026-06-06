@@ -24,9 +24,11 @@ const hotTopics = [
 export function MarketPage({
   onOpenListing,
   onOpenChat,
+  onMakeOffer,
 }: {
   onOpenListing: (listing: Listing) => void
   onOpenChat: (listing: Listing) => void
+  onMakeOffer: (listing: Listing) => void
 }) {
   const [kind, setKind] = useState<ProductKind>('Single Card')
   const visibleListings = useMemo(
@@ -119,6 +121,7 @@ export function MarketPage({
               key={listing.id}
               listing={listing}
               onChat={() => onOpenChat(listing)}
+              onOffer={() => onMakeOffer(listing)}
               onOpen={() => onOpenListing(listing)}
             />
           ))}

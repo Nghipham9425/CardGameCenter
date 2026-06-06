@@ -29,3 +29,19 @@ export type ChatThread = {
   unread: boolean
   updatedAt: string
 }
+
+export type OfferKind = 'Cash offer' | 'Trade offer' | 'Cash + trade'
+
+export type OfferStatus = 'Pending seller' | 'Seller accepted offer' | 'Rejected' | 'Trade completed'
+
+export type Offer = {
+  id: string
+  listing: Listing
+  kind: OfferKind
+  amount: string
+  tradeItem: string
+  note: string
+  status: OfferStatus
+  step: string
+  createdAt: string
+}

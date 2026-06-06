@@ -89,3 +89,32 @@ img {
   background-image: url("/151/squirtle.png");
   background-position: center 50%;
 }
+
+.listing-card {
+  container-type: inline-size;
+}
+
+@container (min-width: 620px) {
+  .listing-card-body {
+    grid-template-columns: 128px minmax(0, 1fr);
+  }
+
+  .listing-card-media {
+    width: 128px;
+  }
+
+  .listing-card-image {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .listing-card-photo-count {
+    left: 0.5rem;
+    transform: none;
+  }
+
+  .listing-card-actions {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+  }
+}

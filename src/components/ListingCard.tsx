@@ -1,4 +1,4 @@
-import { Camera, MapPin, MessageCircle, Star } from 'lucide-react'
+import { Camera, Handshake, MapPin, MessageCircle, Star } from 'lucide-react'
 import type { Listing } from '../types'
 import { Badge } from './Badge'
 
@@ -7,20 +7,22 @@ export function ListingCard({
   featured = false,
   onOpen,
   onChat,
+  onOffer,
 }: {
   listing: Listing
   featured?: boolean
   onOpen: () => void
   onChat: () => void
+  onOffer: () => void
 }) {
   return (
-    <article className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:border-amber-200 hover:shadow-md">
-      <div className="grid gap-4 p-4 min-[520px]:grid-cols-[128px_minmax(0,1fr)]">
-        <button className="relative block w-full text-left min-[520px]:w-32" type="button" onClick={onOpen}>
-          <div className="mx-auto aspect-[63/88] w-32 max-w-full overflow-hidden rounded-md bg-slate-100 min-[520px]:mx-0">
+    <article className="listing-card overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:border-amber-200 hover:shadow-md">
+      <div className="listing-card-body grid gap-4 p-4">
+        <button className="listing-card-media relative block w-full text-left" type="button" onClick={onOpen}>
+          <div className="listing-card-image mx-auto aspect-[63/88] w-32 max-w-full overflow-hidden rounded-md bg-slate-100">
             <img className="h-full w-full object-cover" src={listing.image} alt={listing.name} />
           </div>
-          <span className="absolute bottom-2 left-1/2 inline-flex -translate-x-1/2 items-center gap-1 rounded-md bg-slate-950/90 px-2 py-1 text-xs font-semibold text-white min-[520px]:left-2 min-[520px]:translate-x-0">
+          <span className="listing-card-photo-count absolute bottom-2 left-1/2 inline-flex -translate-x-1/2 items-center gap-1 rounded-md bg-slate-950/90 px-2 py-1 text-xs font-semibold text-white">
             <Camera size={13} />
             {listing.photos}
           </span>
@@ -49,19 +51,29 @@ export function ListingCard({
             </div>
           </div>
 
-          <div className="mt-4 grid gap-3 min-[520px]:grid-cols-[minmax(0,1fr)_auto] min-[520px]:items-end">
+          <div className="listing-card-actions mt-4 grid gap-3">
             <div className="min-w-0">
               <p className="text-xs text-slate-500">Ask price</p>
               <p className="truncate text-base font-bold text-slate-950">{listing.price}</p>
             </div>
-            <button
-              className="inline-flex h-10 w-full items-center justify-center gap-2 rounded-md bg-[#263238] px-4 text-sm font-semibold text-white transition hover:bg-[#1b2529] min-[520px]:w-auto"
-              type="button"
-              onClick={onChat}
-            >
-              <MessageCircle size={17} />
-              Chat
-            </button>
+            <div className="grid grid-cols-2 gap-2">
+              <button
+                className="inline-flex h-10 w-full min-w-0 items-center justify-center gap-2 rounded-md border border-slate-200 bg-white px-3 text-sm font-semibold text-slate-700 transition hover:border-amber-300"
+                type="button"
+                onClick={onOffer}
+              >
+                <Handshake size={17} />
+                Offer
+              </button>
+              <button
+                className="inline-flex h-10 w-full min-w-0 items-center justify-center gap-2 rounded-md bg-[#263238] px-3 text-sm font-semibold text-white transition hover:bg-[#1b2529]"
+                type="button"
+                onClick={onChat}
+              >
+                <MessageCircle size={17} />
+                Chat
+              </button>
+            </div>
           </div>
         </div>
       </div>
